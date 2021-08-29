@@ -21,3 +21,21 @@ When comparing the temperature summaries between June and December for the city 
 3. The minimum temperatures for June and December differ by ten degrees, their maximums differ by two degrees. With these differing temperatures, the percentiles for each month vary. In June, 25% of the temperatures will be below 73 degrees, while in December 25% of the temperatures will be below 69 degrees.
 
 # Summary
+
+Overall based on the analysis of the temperatures from June and December, it would be a great investment for the company to open up a shop in O'ahu. The temperatures in the month for summer and winter are consistent in the mid seventies, which is a nice temperature.
+
+To show additional analysis and support on why opening a shop in O'ahu is a good investment, the next analysis to be done is to look at the precipitation in the months of June and December. The method for analysis would be to create a summary of statistics for June is shown below, to change for December replace June with December:
+
+```
+june_rain = []
+june_rain = session.query(Measurement.date, Measurement.prcp).filter(extract('month', Measurement.date)==6).all()
+june_df = pd.DataFrame(june_rain, columns=['date','June Precipitation'])
+june_df.set_index(df['date'], inplace=True)
+june_df = june_df.sort_index()
+```
+
+The results for precipitation in both months are:
+
+![rain_summaries.png](images/rain_summaries.png)
+
+Looking at the tables, it supports the decision of investing in a shop on O'ahu. In addition to precipation, we can look further into precipation and temperature by station. An analysis would not only further support the decision, but could also provide the company a better idea of which station they could locate their shop. If a station fits their ideal rain and temperature settings, then they can pick an exact station.
